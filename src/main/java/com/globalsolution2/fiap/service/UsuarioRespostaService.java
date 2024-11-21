@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.globalsolution2.fiap.model.UsuarioRespostaModel;
+import com.globalsolution2.fiap.repository.RespostaRepository;
 import com.globalsolution2.fiap.repository.UsuarioRespostaRepository;
 
 @Service
@@ -15,12 +16,27 @@ public class UsuarioRespostaService {
     @Autowired
     private UsuarioRespostaRepository usuarioRespostaRepository;
 
+    @Autowired
+    private RespostaRepository respostaRepository; 
+
     public UsuarioRespostaModel createUsuarioResposta(UsuarioRespostaModel usuarioResposta) {
+        boolean isRespostaCorreta = respostaRepository.findById(usuarioResposta.getIdResposta())
+                .map(resposta -> resposta.isCorreta())
+                .orElse(false);
+
+        usuarioResposta.setStResultado(isRespostaCorreta);
+
         return usuarioRespostaRepository.save(usuarioResposta);
     }
 
     public List<UsuarioRespostaModel> createUsuarioRespostas(List<UsuarioRespostaModel> usuarioRespostas) {
-        return usuarioRespostaRepository.saveAll(usuarioRespostas);
+        for (UsuarioRespostaModel usuarioResposta : usuarioRespostas) {
+            boolean isRespostaCorreta = respostaRepository.findById(usuarioResposta.getIdResposta())
+                    .map(resposta -> resposta.isCorreta())
+                    .orElse(false);
+            usuarioResposta.setStResultado(isRespostaCorreta);
+        }
+         return usuarioRespostaRepository.saveAll(usuarioRespostas);
     }
 
     public List<UsuarioRespostaModel> getAllUsuarioRespostas() {

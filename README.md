@@ -1,5 +1,5 @@
 <div align="center" id="top">  
-    <img src="https://www.linkimagem.com/imagem-projeto-energyquest.jpg" alt="EnergyQuest" width="200" />  
+    <img src="https://energyquesttech.com/wp-content/uploads/2020/03/EnergyQuest_logo-scaled.jpg" alt="EnergyQuest" width="200" />  
     <h1 align="center">EnergyQuest</h1>  
 </div>  
 <p align="center">  
@@ -34,7 +34,7 @@ Link para o Deploy: [EnergyQuest API](#)
 # ⚙️ Configuração
 
 ### Pré-requisitos
-- Java 17 ou superior
+- Java 21
 - Maven
 - Banco de dados relacional (configurado com variáveis de ambiente)
 
@@ -141,15 +141,6 @@ src/
 
 ### Endpoints de Usuário
 
-- **Criar Usuários**: `/usuarios`
-    - **Método**: `POST`
-    - **Descrição**: Cria um ou mais usuários no sistema.
-    - **Parâmetros**:
-      - Um ou mais objetos `UsuarioModel` no corpo da requisição.
-    - **Resposta**:
-      - `201 Created`: Usuários criados com sucesso.
-      - `400 Bad Request`: Caso haja erro na validação dos dados.
-
 - **Buscar Todos os Usuários**: `/usuarios`
     - **Método**: `GET`
     - **Descrição**: Retorna a lista de todos os usuários cadastrados no sistema.
@@ -174,6 +165,18 @@ src/
     - **Resposta**:
       - `200 OK`: Usuário atualizado com sucesso.
       - `404 Not Found`: Caso o usuário não seja encontrado.
+**Exemplo de corpo da requisição:**
+```json
+
+  {
+    "nmUsuario": "João Silva Reis",
+    "nmLogin": "joao.silva",
+    "nmSenha":"senhaSegura123",
+    "nmEmail": "joao.silva@email.com",
+    "role": "USER"
+  }
+
+```
 
 - **Deletar Usuário**: `/usuarios/{id}`
     - **Método**: `DELETE`
@@ -195,6 +198,20 @@ src/
     - **Resposta**:
       - `201 Created`: Perguntas criadas com sucesso.
       - `400 Bad Request`: Caso haja erro na validação dos dados.
+**Exemplo de corpo da requisição:**
+```json
+
+  [
+    {
+      "nmPergunta": "Qual é a capital do Brasil?",
+      "txPergunta": "Adivinhe entre as opções abaixo qual deve ser a capital do Brasil"
+    },
+    {
+      "nmPergunta": "Qual é a maior cidade do Brasil?",
+      "txPergunta": "Adivinhe entre as opções abaixo qual deve ser"
+      }
+  ]
+```
 
 - **Buscar Todas as Perguntas**: `/perguntas`
     - **Método**: `GET`
@@ -221,6 +238,15 @@ src/
       - `200 OK`: Pergunta atualizada com sucesso.
       - `404 Not Found`: Caso a pergunta não seja encontrada.
 
+**Exemplo de corpo da requisição:**
+```json  
+    {
+      "nmPergunta": "Qual é a capital do Estado da Bahia?",
+      "txPergunta": "Adivinhe entre as opções abaixo qual deve ser a capital da Bahia"
+    },
+  
+```
+
 - **Deletar Pergunta**: `/perguntas/{id}`
     - **Método**: `DELETE`
     - **Descrição**: Deleta uma pergunta do sistema pelo seu ID.
@@ -246,13 +272,13 @@ src/
 [
   {
     "idPergunta": 1,
-    "txResposta": "A energia solar é uma fonte renovável.",
+    "txResposta": "A Capital é Brasilia",
     "isCorreta": true
   },
   {
     "idPergunta": 2,
-    "txResposta": "A energia eólica é gerada por ventos.",
-    "isCorreta": true
+    "txResposta": "A maior cidade é Rio Branco",
+    "isCorreta": false
   }
 ]
 ```
@@ -286,7 +312,7 @@ src/
 ```json
 {
   "idPergunta": 1,
-  "txResposta": "A energia solar é uma fonte sustentável.",
+  "txResposta": "A capital é Salvador.",
   "isCorreta": true
 }
 ```
@@ -299,6 +325,78 @@ src/
     - **Resposta**:
       - `204 No Content`: Resposta deletada com sucesso.
       - `404 Not Found`: Caso a resposta não seja encontrada.
+
+Aqui está a estrutura para os endpoints de **UsuarioResposta** com os métodos `POST`, `PUT`, `GET`, e `DELETE`, seguindo o padrão que você forneceu:
+
+### Endpoints de UsuarioResposta
+
+#### **Criar Respostas do Usuário**: `/usuario-respostas`
+- **Método**: `POST`
+- **Descrição**: Cria uma ou mais respostas associadas aos usuários.
+- **Parâmetros**:
+  - Um ou mais objetos `UsuarioRespostaModel` no corpo da requisição.
+- **Resposta**:
+  - `201 Created`: Respostas criadas com sucesso.
+  - `400 Bad Request`: Caso haja erro na validação dos dados.
+
+**Exemplo de corpo da requisição:**
+```json
+[
+  {
+    "idUsuario": 1,
+    "idPergunta": 9,
+    "idResposta": 11,
+  },
+  {
+    "idUsuario": 2,
+    "idPergunta": 9,
+    "idResposta": 10,
+  }
+]
+```
+
+#### **Buscar Todas as Respostas dos Usuários**: `/usuario-respostas`
+- **Método**: `GET`
+- **Descrição**: Retorna a lista de todas as respostas dos usuários cadastradas no sistema.
+- **Resposta**:
+  - `200 OK`: Lista de respostas dos usuários.
+
+#### **Buscar Resposta do Usuário por ID**: `/usuario-respostas/{id}`
+- **Método**: `GET`
+- **Descrição**: Retorna as informações de uma resposta específica do usuário pelo seu ID.
+- **Parâmetros**:
+  - `id` (Long): ID da resposta do usuário.
+- **Resposta**:
+  - `200 OK`: Detalhes da resposta do usuário.
+  - `404 Not Found`: Caso a resposta não seja encontrada.
+
+#### **Atualizar Resposta do Usuário**: `/usuario-respostas/{id}`
+- **Método**: `PUT`
+- **Descrição**: Atualiza as informações de uma resposta de usuário existente.
+- **Parâmetros**:
+  - `id` (Long): ID da resposta a ser atualizada.
+  - Dados da resposta no corpo da requisição.
+- **Resposta**:
+  - `200 OK`: Resposta do usuário atualizada com sucesso.
+  - `404 Not Found`: Caso a resposta não seja encontrada.
+
+**Exemplo de corpo da requisição:**
+```json
+{
+  "idUsuario": 1,
+  "idPergunta": 2,
+  "idResposta": 3,
+}
+```
+
+#### **Deletar Resposta do Usuário**: `/usuario-respostas/{id}`
+- **Método**: `DELETE`
+- **Descrição**: Deleta uma resposta do usuário do sistema pelo seu ID.
+- **Parâmetros**:
+  - `id` (Long): ID da resposta a ser deletada.
+- **Resposta**:
+  - `204 No Content`: Resposta deletada com sucesso.
+  - `404 Not Found`: Caso a resposta não seja encontrada.
 
 ---
 

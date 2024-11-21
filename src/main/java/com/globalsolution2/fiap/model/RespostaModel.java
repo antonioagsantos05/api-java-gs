@@ -1,6 +1,7 @@
 package com.globalsolution2.fiap.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
@@ -33,7 +34,8 @@ public class RespostaModel {
  
     @Column(name = "tx_resposta", nullable = false, columnDefinition = "NVARCHAR(MAX)")
     private String txResposta;
-
+    
+    @JsonProperty("isCorreta")
     @Column(name = "is_correta", nullable = false)    
     private boolean isCorreta;
     
