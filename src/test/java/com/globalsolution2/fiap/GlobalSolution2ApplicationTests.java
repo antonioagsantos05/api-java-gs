@@ -16,11 +16,5 @@ class GlobalSolution2ApplicationTests {
 	        System.setProperty(entry.getKey(), entry.getValue())
 	    );
 	}
-
-	
-    @Test
-    void contextLoads() {
-    	
-    }
 }
 
