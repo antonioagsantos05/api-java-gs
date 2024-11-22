@@ -14,7 +14,9 @@
 # 📝 Sobre  
 **EnergyQuest** é uma API desenvolvida em Java utilizando o framework Spring Boot. Este projeto gerencia perguntas e respostas relacionadas a dados de usuários e questões energéticas, integrando funcionalidades de autenticação e armazenamento seguro.
 
-Link para o Deploy: [EnergyQuest API](#)
+Link para o Deploy: [https://api-java-devops.azurewebsites.net/](#)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/GYgLPEjsi9g?si=UPmdUBpEENMZTPlI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 # ✨ Funcionalidades
 - ✅ **Endpoints RESTful** para CRUD de perguntas e respostas.
