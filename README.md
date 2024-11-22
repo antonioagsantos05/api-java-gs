@@ -16,7 +16,15 @@
 
 Link para o Deploy: [https://api-java-devops.azurewebsites.net/](#)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GYgLPEjsi9g?si=UPmdUBpEENMZTPlI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+# PITCH
+
+[![Video de Demonstração](https://img.youtube.com/vi/GYgLPEjsi9g/0.jpg)](https://www.youtube.com/watch?v=GYgLPEjsi9g)
+
+# DEMONSTRAÇÃO
+
+[![Video de Demonstração](https://img.youtube.com/vi/QhDRTCTee-Y/0.jpg)](https://www.youtube.com/watch?v=QhDRTCTee-Y)
+
+
 
 # ✨ Funcionalidades
 - ✅ **Endpoints RESTful** para CRUD de perguntas e respostas.
